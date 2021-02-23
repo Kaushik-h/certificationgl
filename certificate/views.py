@@ -3,7 +3,7 @@ from .upload import pdf_upload
 from rest_framework import generics, views, permissions ,response, status
 
 class CertificateView(views.APIView):
-	# permission_classes = [permissions.IsAuthenticated,]
+	permission_classes = [permissions.IsAuthenticated,]
 	http_method_names=['post']
 	def post(self, request, *args, **kwargs): 
 		try:
