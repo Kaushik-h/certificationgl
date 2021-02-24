@@ -1,7 +1,12 @@
-from google.cloud import storage
+from storages.backends.gcloud import GoogleCloudStorage
+storage = GoogleCloudStorage()
 
-def pdf_upload(file, filename):
-	storage_client = storage.Client()
-	bucket = storage_client.bucket('certificates')
-	blob = bucket.blob(filename)
-	blob.upload_from_filename(file)
+class Upload:
+    @staticmethod
+    def upload_pdf(file, filename):
+        try:
+            target_path = '/pdf/' + filename
+            path = storage.save(target_path, file)
+            return storage.url(path)
+        except Exception as e:
+            print("Failed to upload!")

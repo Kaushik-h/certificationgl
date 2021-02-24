@@ -16,5 +16,6 @@ class Certificates(models.Model):
 	visibility=models.BooleanField()
 
 	def save(self, *args, **kwargs):
-		self.validity = self.expiry_date-date.today()
+		td = self.expiry_date-date.today()
+		self.validity = td.days
 		super(Certificates, self).save(*args, **kwargs)
