@@ -9,7 +9,6 @@ class CertificateView(views.APIView):
 	http_method_names=['post']
 	parser_classes = (MultiPartParser, FormParser, JSONParser)
 	def post(self, request, *args, **kwargs): 
-		# try:
 			user=self.request.user	
 			request.data["user"]=user.id
 			pdf=request.FILES['pdf']
@@ -22,5 +21,4 @@ class CertificateView(views.APIView):
 				serializer.save()
 			print(serializer.data)
 			return response.Response(serializer.data,status=status.HTTP_200_OK)
-		# except Exception as e:
-		# 	return response.Response(str(e))
+		
