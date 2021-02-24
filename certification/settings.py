@@ -149,3 +149,10 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 )
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'certificate_pdf'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kaushikkishore24@gmail.com'
+EMAIL_HOST_PASSWORD = 'dravid24'

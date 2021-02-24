@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from knox.models import AuthToken
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
+from django.conf import settings 
+from django.core.mail import send_mail
 
 
 class UserAPIView(generics.RetrieveAPIView):
@@ -22,6 +24,11 @@ class RegisterAPIView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        subject = 'Welcome to credify'
+        message = 'Hello '+user.name+' thank you for using credify. Manage your cloud certifications using credify'
+        email_from = settings.EMAIL_HOST_USER 
+        recipient_list = [user.email] 
+        send_mail( subject, message, email_from, recipient_list ) 
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": AuthToken.objects.create(user)[1]
