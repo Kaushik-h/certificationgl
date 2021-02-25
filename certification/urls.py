@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('', include('certificate.urls')),
-    re_path(r'.*',TemplateView.as_view(template_name="index.html")),
+    # re_path(r'.*',TemplateView.as_view(template_name="index.html")),
 ]

@@ -25,7 +25,7 @@ class RegisterAPIView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         subject = 'Welcome to credify'
-        message = 'Hello '+user.name+' thank you for using credify. Manage your cloud certifications using credify'
+        message = 'Hello '+user.name+' ,thank you for using credify. Manage your cloud certifications using credify'
         email_from = settings.EMAIL_HOST_USER 
         recipient_list = [user.email] 
         send_mail( subject, message, email_from, recipient_list ) 
