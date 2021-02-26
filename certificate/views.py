@@ -30,11 +30,11 @@ class CertificateView(views.APIView):
 			serializer = CertificateSerializer(data=request.data)
 			if serializer.is_valid():
 				certificate = serializer.save()
-				# subject = 'New certificate uploaded' 
-				# message = 'Hello '+user.name+' , You have uploaded your '+certificate.csp+' '+certificate.certname+' certification in Credify'
-				# email_from = settings.EMAIL_HOST_USER 
-				# recipient_list = [user.email] 
-				# send_mail( subject, message, email_from, recipient_list ) 
+				subject = 'New certificate uploaded' 
+				message = 'Hello '+user.name+' , You have uploaded your '+certificate.csp+' '+certificate.certname+' certification in Credify'
+				email_from = settings.EMAIL_HOST_USER 
+				recipient_list = [user.email] 
+				send_mail( subject, message, email_from, recipient_list ) 
 			return response.Response(serializer.data,status=status.HTTP_200_OK)
 		except Exception as e:
 			return response.Response(str(e))
